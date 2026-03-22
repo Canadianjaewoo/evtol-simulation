@@ -75,3 +75,7 @@ Transitions occur when:
 ## Build/Run
 
 codelite 18.2.0
+
+## Simulation result(1 sample)
+<img width="467" height="282" alt="simulation_result" src="https://github.com/user-attachments/assets/d9936cf8-7ff9-4695-a401-eb7f1c2ac6ee" />
+
