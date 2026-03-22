@@ -1,5 +1,5 @@
 # evtol-simulation
-Joby take-home fleet simulation 
+Joby EVTOL fleet simulation 
 ## Overview
 
 This project simulates the operation of a fleet of 20 eVTOL aircraft over a fixed simulation duration.
