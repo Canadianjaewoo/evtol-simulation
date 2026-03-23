@@ -1,5 +1,6 @@
 
 #include "Vehicle.h"
+#include <cmath>
 
 Vehicle::Vehicle(const VehicleSpecs& specs)
     :specs_(specs),
@@ -10,8 +11,8 @@ Vehicle::Vehicle(const VehicleSpecs& specs)
     totalChargeTime_(0.0),
     totalDistance_(0.0),
     totalFaults_(0),
-    //rng_(42),
-    rng_(std::random_device{}()),
+    rng_(42),
+    //rng_(std::random_device{}()),
     dist_(0.0, 1.0){}
 
 void Vehicle::update(double dt, Chargers& chargers){
@@ -32,8 +33,10 @@ void Vehicle::updateFlying(double dt){
     totalFlightTime_ += dt;
     totalDistance_ += specs_.cruiseSpeed() * dt;
     
-    double faultProb = specs_.ProbabilityFaultPerHour() * dt;
-    if(dist_(rng_) < faultProb){
+    double lambda = specs_.ProbabilityFaultPerHour();
+    double faultProbabilityThisStep = 1 - std::exp(-lambda * dt);
+    
+    if(dist_(rng_) < faultProbabilityThisStep){
         totalFaults_++;
     }
     //transition: flying to waiting
